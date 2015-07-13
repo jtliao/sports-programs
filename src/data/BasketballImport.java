@@ -23,13 +23,71 @@ public class BasketballImport {
 	 * @param sheetName- the name of the sheet to be imported
 	 * @param list- the list of players to add players to
 	 */
-	public static void importSheet(String sheetName, ArrayList<BasketballPlayer> list) throws BiffException, IOException{
+	public static void importPlayers(String sheetName, ArrayList<BasketballPlayer> list) throws BiffException, IOException{
 		Workbook workbook = Workbook.getWorkbook(new File(sheetName));
 		Sheet sheet = workbook.getSheet(0);
 		int counter =0;
 		try{
 			while (sheet.getCell(0, counter)!=null){
 				list.add(importRowToPlayer(counter, sheet));
+				counter++;
+			}
+		}
+		catch (ArrayIndexOutOfBoundsException e){
+			return;
+		}
+	}
+	
+	/**
+	 * 
+	 * @param sheetName
+	 * @param list
+	 * @throws BiffException
+	 * @throws IOException
+	 */
+	public static void importSalaries(String sheetName, ArrayList<BasketballPlayer> list) throws BiffException, IOException{
+		Workbook workbook = Workbook.getWorkbook(new File(sheetName));
+		Sheet sheet = workbook.getSheet(0);
+		ArrayList<BasketballPlayer> listCopy = list;
+		int counter =0;
+		try{
+			while (sheet.getCell(0, counter)!=null){
+				for (BasketballPlayer b : listCopy){
+					if (b.getName().equals(sheet.getCell(0,counter).getContents())){
+						b.setSalary(Integer.parseInt(sheet.getCell(1, counter).getContents()));
+						listCopy.remove(b);
+						break;
+					}
+				}
+				counter++;
+			}
+		}
+		catch (ArrayIndexOutOfBoundsException e){
+			return;
+		}
+	}
+	
+	/**
+	 * 
+	 * @param sheetName
+	 * @param list
+	 * @throws BiffException
+	 * @throws IOException
+	 */
+	public static void importWinShare(String sheetName, ArrayList<BasketballPlayer> list) throws BiffException, IOException{
+		Workbook workbook = Workbook.getWorkbook(new File(sheetName));
+		Sheet sheet = workbook.getSheet(0);
+		ArrayList<BasketballPlayer> listCopy = list;
+		int counter =0;
+		try{
+			while (sheet.getCell(0, counter)!=null){
+				for (BasketballPlayer b : listCopy){
+					if (b.getName().equals(sheet.getCell(0,counter).getContents())){
+						b.setWinShare(Double.parseDouble(sheet.getCell(1, counter).getContents()));
+						listCopy.remove(b);
+						break;
+					}
+				}
 				counter++;
 			}
 		}

@@ -1,11 +1,11 @@
-package data;
+package programs;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import data.BasketballImport;
 import jxl.read.biff.BiffException;
-
 import players.BasketballPlayer;
 
 /**
@@ -18,11 +18,13 @@ public class BasketballComparer {
 	 * Runs the basketball comparer
 	 */
 	public static void main(String[] args) throws BiffException, IOException {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter file path to .xls file:");
+		String pathName = scan.nextLine();
 		System.out.println("Loading data...");
 		ArrayList<BasketballPlayer> list = new ArrayList<BasketballPlayer>();
-		BasketballImport.importSheet("C:\\Users\\Jason\\Documents\\shortdata.xls", list);
+		BasketballImport.importPlayers(pathName, list);
 		System.out.println("Enter player to be compared:");
-		Scanner scan = new Scanner(System.in);
 		String name = scan.nextLine();
 		System.out.println("Searching for player most similar to: "+name);
 		BasketballPlayer player = null;

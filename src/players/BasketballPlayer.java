@@ -5,6 +5,7 @@ import stats.BasketballStatline;
 public class BasketballPlayer extends Player{
 	private BasketballStatline stats;
 	private BasketballStatline zstats;
+	private double winShare;
 
 	
 	/**
@@ -29,6 +30,12 @@ public class BasketballPlayer extends Player{
 		calculateZScoreStatline(avg, std);
 	}
 	
+	/**
+	 * @return statline of this player
+	 */
+	public BasketballStatline getStats(){
+		return stats;
+	}
 	/**
 	 * @return the z-score statline of this player
 	 */
@@ -75,5 +82,20 @@ public class BasketballPlayer extends Player{
 		total+=Math.abs((stats.getBlocks()-otherStats.getBlocks())/zstats.getBlocks());
 		total+=Math.abs((zstats.getTurnovers()-otherStats.getTurnovers())/zstats.getTurnovers());
 		return total;
+	}
+	
+	/**
+	 * Set this player's win shares
+	 * @param winShare- win share to be set
+	 */
+	public void setWinShare(double winShare){
+		this.winShare = winShare;
+	}
+	
+	/**
+	 * @return this player's win share
+	 */
+	public double getWinShare(){
+		return winShare;
 	}
 }

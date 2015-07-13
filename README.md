@@ -1,6 +1,5 @@
 # sports-programs
 Some programs to perform various functions given sports data
 
-Run the BasketballComparer class to find the most statistically similar player to specified player.
+Holds programs to do things like find the most statistically similar player to an inputted player, find win share/salary, etc. 
 
-Change the file path in BasketballComparer class to match your own file location. 

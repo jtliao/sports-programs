@@ -7,6 +7,7 @@ package players;
 public abstract class Player {
 	private String sport;
 	private String name;
+	private double salary;
 	
 	/**
 	 * Initialize a player with specified sport and name
@@ -30,5 +31,22 @@ public abstract class Player {
 	 */
 	public String getName(){
 		return name;
+	}
+	
+	/**
+	 * Set the salary of this player
+	 * Not in the constructor since salary isn't necessary for all players, and the salary 
+	 * isn't needed for many calculations, so making it necessary in the constructor would be
+	 * an inconvenience
+	 * @param salary- salary to be set
+	 */
+	public void setSalary(double salary){
+		this.salary = salary;
+	}
+	/**
+	 * @return the salary of this player
+	 */
+	public double getSalary(){
+		return salary;
 	}
 }
