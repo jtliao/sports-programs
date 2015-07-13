@@ -39,11 +39,9 @@ public class BasketballImport {
 	}
 	
 	/**
-	 * 
-	 * @param sheetName
-	 * @param list
-	 * @throws BiffException
-	 * @throws IOException
+	 * Import salaries from a .xls file
+	 * @param sheetName- the name of the sheet to be imported
+	 * @param list- list with players in it
 	 */
 	public static void importSalaries(String sheetName, ArrayList<BasketballPlayer> list) throws BiffException, IOException{
 		Workbook workbook = Workbook.getWorkbook(new File(sheetName));
@@ -54,7 +52,7 @@ public class BasketballImport {
 			while (sheet.getCell(0, counter)!=null){
 				for (BasketballPlayer b : listCopy){
 					if (b.getName().equals(sheet.getCell(0,counter).getContents())){
-						b.setSalary(Integer.parseInt(sheet.getCell(1, counter).getContents()));
+						b.setSalary(Double.parseDouble(sheet.getCell(1, counter).getContents()));
 						listCopy.remove(b);
 						break;
 					}
@@ -68,11 +66,9 @@ public class BasketballImport {
 	}
 	
 	/**
-	 * 
-	 * @param sheetName
-	 * @param list
-	 * @throws BiffException
-	 * @throws IOException
+	 * Import win shares into a player
+	 * @param sheetName- sheet to import win shares from
+	 * @param list- list with players in it
 	 */
 	public static void importWinShare(String sheetName, ArrayList<BasketballPlayer> list) throws BiffException, IOException{
 		Workbook workbook = Workbook.getWorkbook(new File(sheetName));
