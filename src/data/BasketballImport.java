@@ -14,9 +14,12 @@ import jxl.read.biff.BiffException;
 
 public class BasketballImport {
 	static Statline mean;
-
-	public BasketballImport() {}
 	
+	/**
+	 * Import the data in specified sheet into a list of players
+	 * @param sheetName- the name of the sheet to be imported
+	 * @param list- the list of players to add players to
+	 */
 	public static void importSheet(String sheetName, ArrayList<BasketballPlayer> list) throws BiffException, IOException{
 		Workbook workbook = Workbook.getWorkbook(new File(sheetName));
 		Sheet sheet = workbook.getSheet(0);
@@ -32,6 +35,12 @@ public class BasketballImport {
 		}
 	}
 	
+	/**
+	 * Helper method to import a single row into a BasketballPlayer object
+	 * @param row- which row to import
+	 * @param sheet- what sheet to import from
+	 * @return the BasketballPlayer from given row of data
+	 */
 	private static BasketballPlayer importRowToPlayer(int row, Sheet sheet){
 		String name = sheet.getCell(0, row).getContents();
 		double points = Double.parseDouble(sheet.getCell(1, row).getContents());
@@ -49,6 +58,11 @@ public class BasketballImport {
 		return new BasketballPlayer(name, new Statline(points, fgp, threes, threepp, ftm, ftp, reb, ast, stl, block, to), mean, calculateStdev(sheet));
 	}
 	
+	/**
+	 * Calculate the mean statline of all players in sheet
+	 * @param sheet- sheet to calculate from
+	 * @return the mean Statline
+	 */
 	private static Statline calculateMean(Sheet sheet){
 		Cell[] cellArr = sheet.getColumn(1);
 		double total = 0;
@@ -130,6 +144,11 @@ public class BasketballImport {
 		return new Statline(pts, fgp, thr, thrp, ftm, ftp, reb, ast, stl, blk, to);
 	}
 	
+	/**
+	 * Calculate standard deviation for each stat in statline
+	 * @param sheet- sheet to calculate st dev from
+	 * @return statline with standard deviations
+	 */
 	private static Statline calculateStdev(Sheet sheet){
 		Cell[] cellArr = sheet.getColumn(1);
 		double total = 0;
@@ -210,5 +229,4 @@ public class BasketballImport {
 		
 		return new Statline(pts, fgp, thr, thrp, ftm, ftp, reb, ast, stl, blk, to);
 	}
-
 }

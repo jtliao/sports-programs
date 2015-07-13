@@ -8,7 +8,8 @@ public class BasketballPlayer extends Player{
 
 	
 	/**
-	 * Initialize a player
+	 * Initialize a player with given name, stats, and average stats and standard deviation for all players 
+	 * so that similarities can be calculated with z-scores
 	 * @param name- player name
 	 * @param points-points per game
 	 * @param fgp- field goal percentage
@@ -28,10 +29,18 @@ public class BasketballPlayer extends Player{
 		calculateZScoreStatline(avg, std);
 	}
 	
+	/**
+	 * @return the z-score statline of this player
+	 */
 	public Statline getZScoreStatline(){
 		return zstats;
 	}
 	
+	/**
+	 * Calculate this player's z-score statline
+	 * @param average- average statline of players in imported sheet
+	 * @param stdev- standard deviation of each stat in statline of all players in sheet
+	 */
 	private void calculateZScoreStatline(Statline average, Statline stdev){
 		double pts=Math.abs((stats.getPoints()-average.getPoints())/stdev.getPoints());
 		double fgp=Math.abs((stats.getFgp()-average.getFgp())/stdev.getFgp());
@@ -47,6 +56,11 @@ public class BasketballPlayer extends Player{
 		zstats = new Statline(pts, fgp, three, threep, ftm, ftp, reb, ast, stl, blk, to);
 	}
 	
+	/**
+	 * Calculate the similarity number between this player's statline and another statline
+	 * @param otherStats- statline to be compared with
+	 * @return the difference in z-scores
+	 */
 	public double calculateSimilarity (Statline otherStats){
 		double total=0;
 		total+=Math.abs((zstats.getPoints()-otherStats.getPoints())/zstats.getPoints());
