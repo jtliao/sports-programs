@@ -1,5 +1,9 @@
 package players;
 
+/**
+ * A generic player with sport and name, to be extended by a player of specific sport
+ * @author Jason Liao
+ */
 public abstract class Player {
 	private String sport;
 	private String name;

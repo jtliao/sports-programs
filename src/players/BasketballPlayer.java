@@ -1,10 +1,10 @@
 package players;
 
-import stats.Statline;
+import stats.BasketballStatline;
 
 public class BasketballPlayer extends Player{
-	private Statline stats;
-	private Statline zstats;
+	private BasketballStatline stats;
+	private BasketballStatline zstats;
 
 	
 	/**
@@ -23,7 +23,7 @@ public class BasketballPlayer extends Player{
 	 * @param blocks- blocks per game
 	 * @param turnovers- turnovers per game
 	 */
-	public BasketballPlayer(String name, Statline stats, Statline avg, Statline std) {
+	public BasketballPlayer(String name, BasketballStatline stats, BasketballStatline avg, BasketballStatline std) {
 		super("Basketball", name);
 		this.stats = stats;
 		calculateZScoreStatline(avg, std);
@@ -32,7 +32,7 @@ public class BasketballPlayer extends Player{
 	/**
 	 * @return the z-score statline of this player
 	 */
-	public Statline getZScoreStatline(){
+	public BasketballStatline getZScoreStatline(){
 		return zstats;
 	}
 	
@@ -41,7 +41,7 @@ public class BasketballPlayer extends Player{
 	 * @param average- average statline of players in imported sheet
 	 * @param stdev- standard deviation of each stat in statline of all players in sheet
 	 */
-	private void calculateZScoreStatline(Statline average, Statline stdev){
+	private void calculateZScoreStatline(BasketballStatline average, BasketballStatline stdev){
 		double pts=Math.abs((stats.getPoints()-average.getPoints())/stdev.getPoints());
 		double fgp=Math.abs((stats.getFgp()-average.getFgp())/stdev.getFgp());
 		double three=Math.abs((stats.getThrees()-average.getThrees())/stdev.getThrees());
@@ -53,7 +53,7 @@ public class BasketballPlayer extends Player{
 		double stl=Math.abs((stats.getSteals()-average.getSteals()/stdev.getSteals()));
 		double blk=Math.abs((stats.getBlocks()-average.getBlocks())/stdev.getBlocks());
 		double to=Math.abs((stats.getTurnovers()-average.getTurnovers())/stdev.getTurnovers());
-		zstats = new Statline(pts, fgp, three, threep, ftm, ftp, reb, ast, stl, blk, to);
+		zstats = new BasketballStatline(pts, fgp, three, threep, ftm, ftp, reb, ast, stl, blk, to);
 	}
 	
 	/**
@@ -61,7 +61,7 @@ public class BasketballPlayer extends Player{
 	 * @param otherStats- statline to be compared with
 	 * @return the difference in z-scores
 	 */
-	public double calculateSimilarity (Statline otherStats){
+	public double calculateSimilarity (BasketballStatline otherStats){
 		double total=0;
 		total+=Math.abs((zstats.getPoints()-otherStats.getPoints())/zstats.getPoints());
 		total+=Math.abs((zstats.getFgp()-otherStats.getFgp())/zstats.getFgp());

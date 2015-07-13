@@ -8,6 +8,11 @@ import jxl.read.biff.BiffException;
 
 import players.BasketballPlayer;
 
+/**
+ * Class to be run to find the most statistically similar player to specified player
+ * @author Jason Liao
+ *
+ */
 public class BasketballComparer {
 	/**
 	 * Runs the basketball comparer

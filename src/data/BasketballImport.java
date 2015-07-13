@@ -5,15 +5,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import players.BasketballPlayer;
-import stats.Statline;
-
+import stats.BasketballStatline;
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
+/**
+ * Imports an excel file into stats for players
+ * @author Jason Liao
+ */
 public class BasketballImport {
-	static Statline mean;
+	static BasketballStatline mean;
 	
 	/**
 	 * Import the data in specified sheet into a list of players
@@ -55,7 +58,7 @@ public class BasketballImport {
 		double block = Double.parseDouble(sheet.getCell(10, row).getContents());
 		double to = Double.parseDouble(sheet.getCell(11, row).getContents());
 		mean = calculateMean(sheet);
-		return new BasketballPlayer(name, new Statline(points, fgp, threes, threepp, ftm, ftp, reb, ast, stl, block, to), mean, calculateStdev(sheet));
+		return new BasketballPlayer(name, new BasketballStatline(points, fgp, threes, threepp, ftm, ftp, reb, ast, stl, block, to), mean, calculateStdev(sheet));
 	}
 	
 	/**
@@ -63,7 +66,7 @@ public class BasketballImport {
 	 * @param sheet- sheet to calculate from
 	 * @return the mean Statline
 	 */
-	private static Statline calculateMean(Sheet sheet){
+	private static BasketballStatline calculateMean(Sheet sheet){
 		Cell[] cellArr = sheet.getColumn(1);
 		double total = 0;
 		for(Cell c: cellArr){
@@ -141,7 +144,7 @@ public class BasketballImport {
 		}
 		double to = total/sheet.getColumns();
 		
-		return new Statline(pts, fgp, thr, thrp, ftm, ftp, reb, ast, stl, blk, to);
+		return new BasketballStatline(pts, fgp, thr, thrp, ftm, ftp, reb, ast, stl, blk, to);
 	}
 	
 	/**
@@ -149,7 +152,7 @@ public class BasketballImport {
 	 * @param sheet- sheet to calculate st dev from
 	 * @return statline with standard deviations
 	 */
-	private static Statline calculateStdev(Sheet sheet){
+	private static BasketballStatline calculateStdev(Sheet sheet){
 		Cell[] cellArr = sheet.getColumn(1);
 		double total = 0;
 		for(Cell c: cellArr){
@@ -227,6 +230,6 @@ public class BasketballImport {
 		}
 		double to = total/sheet.getColumns();
 		
-		return new Statline(pts, fgp, thr, thrp, ftm, ftp, reb, ast, stl, blk, to);
+		return new BasketballStatline(pts, fgp, thr, thrp, ftm, ftp, reb, ast, stl, blk, to);
 	}
 }

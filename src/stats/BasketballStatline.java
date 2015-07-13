@@ -1,6 +1,10 @@
 package stats;
 
-public class Statline {
+/**
+ * A basketball statline to be assigned to a player
+ * @author Jason Liao
+ */
+public class BasketballStatline extends Statline{
 	private double points; 
 	private double fgp;
 	private double threes; 
@@ -12,9 +16,9 @@ public class Statline {
 	private double steals;
 	private double blocks;
 	private double turnovers;
-
+	
 	/**
-	 * Initialize a statline with specified stats
+	 * Initialize a basketball statline with specified stats
 	 * @param points- points per game
 	 * @param fgp- field goal percentage
 	 * @param threes- threes per game
@@ -27,7 +31,7 @@ public class Statline {
 	 * @param blocks- blocks per game
 	 * @param turnovers- turnovers per game
 	 */
-	public Statline(double points, double fgp, double threes, double threepp, double ftm, double ftp, double rebounds, double assists, double steals, double blocks, double turnovers) {
+	public BasketballStatline(double points, double fgp, double threes, double threepp, double ftm, double ftp, double rebounds, double assists, double steals, double blocks, double turnovers) {
 		this.points = points;
 		this.fgp = fgp;
 		this.threes = threes;
@@ -117,4 +121,5 @@ public class Statline {
 	public double getTurnovers(){
 		return turnovers; 
 	}
+
 }
