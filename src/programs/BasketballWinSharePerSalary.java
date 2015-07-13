@@ -25,6 +25,8 @@ public class BasketballWinSharePerSalary {
 		BasketballImport.importWinShare(pathName, list);
 		System.out.println("Win share data loaded, calculating win share/salary...");
 		TreeMap<BasketballPlayer, Double> map = new TreeMap<BasketballPlayer, Double>();
+		System.out.println(list.get(0).getWinShare());
+		System.out.println(list.get(0).getSalary());
 		for (BasketballPlayer b: list){
 			map.put(b, b.getWinShare()/b.getSalary());
 		}
