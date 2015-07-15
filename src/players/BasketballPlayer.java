@@ -70,17 +70,28 @@ public class BasketballPlayer extends Player{
 	 */
 	public double calculateSimilarity (BasketballStatline otherStats){
 		double total=0;
-		total+=Math.abs((zstats.getPoints()-otherStats.getPoints())/zstats.getPoints());
-		total+=Math.abs((zstats.getFgp()-otherStats.getFgp())/zstats.getFgp());
-		total+=Math.abs((zstats.getThrees()-otherStats.getThrees())/zstats.getThrees());
-		total+=Math.abs((zstats.getThreepp()-otherStats.getThreepp())/zstats.getThreepp());
-		total+=Math.abs((zstats.getFtm()-otherStats.getFtm())/zstats.getFtm());
-		total+=Math.abs((zstats.getFtp()-otherStats.getFtp())/zstats.getFtp());
-		total+=Math.abs((zstats.getRebounds()-otherStats.getRebounds())/zstats.getRebounds());
-		total+=Math.abs((zstats.getAssists()-otherStats.getAssists())/zstats.getAssists());
-		total+=Math.abs((zstats.getSteals()-otherStats.getSteals()/zstats.getSteals()));
-		total+=Math.abs((stats.getBlocks()-otherStats.getBlocks())/zstats.getBlocks());
-		total+=Math.abs((zstats.getTurnovers()-otherStats.getTurnovers())/zstats.getTurnovers());
+//		total+=Math.abs((zstats.getPoints()-otherStats.getPoints())/zstats.getPoints());
+//		total+=Math.abs((zstats.getFgp()-otherStats.getFgp())/zstats.getFgp());
+//		total+=Math.abs((zstats.getThrees()-otherStats.getThrees())/zstats.getThrees());
+//		total+=Math.abs((zstats.getThreepp()-otherStats.getThreepp())/zstats.getThreepp());
+//		total+=Math.abs((zstats.getFtm()-otherStats.getFtm())/zstats.getFtm());
+//		total+=Math.abs((zstats.getFtp()-otherStats.getFtp())/zstats.getFtp());
+//		total+=Math.abs((zstats.getRebounds()-otherStats.getRebounds())/zstats.getRebounds());
+//		total+=Math.abs((zstats.getAssists()-otherStats.getAssists())/zstats.getAssists());
+//		total+=Math.abs((zstats.getSteals()-otherStats.getSteals()/zstats.getSteals()));
+//		total+=Math.abs((zstats.getBlocks()-otherStats.getBlocks())/zstats.getBlocks());
+//		total+=Math.abs((zstats.getTurnovers()-otherStats.getTurnovers())/zstats.getTurnovers());
+		total+=Math.abs((zstats.getPoints()-otherStats.getPoints()));
+		total+=Math.abs((zstats.getFgp()-otherStats.getFgp()));
+		total+=Math.abs((zstats.getThrees()-otherStats.getThrees()));
+		total+=Math.abs((zstats.getThreepp()-otherStats.getThreepp()));
+		total+=Math.abs((zstats.getFtm()-otherStats.getFtm()));
+		total+=Math.abs((zstats.getFtp()-otherStats.getFtp()));
+		total+=Math.abs((zstats.getRebounds()-otherStats.getRebounds()));
+		total+=Math.abs((zstats.getAssists()-otherStats.getAssists()));
+		total+=Math.abs((zstats.getSteals()-otherStats.getSteals()));
+		total+=Math.abs((zstats.getBlocks()-otherStats.getBlocks()));
+		total+=Math.abs((zstats.getTurnovers()-otherStats.getTurnovers()));
 		return total;
 	}
 	
