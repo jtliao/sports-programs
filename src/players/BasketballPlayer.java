@@ -6,6 +6,8 @@ public class BasketballPlayer extends Player{
 	private BasketballStatline stats;
 	private BasketballStatline zstats;
 	private double winShare;
+	private int age;
+	private double per;
 
 	
 	/**
@@ -28,6 +30,32 @@ public class BasketballPlayer extends Player{
 		super("Basketball", name);
 		this.stats = stats;
 		calculateZScoreStatline(avg, std);
+	}
+	
+	/**
+	 * 
+	 * @param name
+	 * @param age
+	 * @param per
+	 */
+	public BasketballPlayer(String name, int age, double per) {
+		super("Basketball", name);
+		this.age = age;
+		this.per = per;
+	}
+	
+	/**
+	 * @return age of this player
+	 */
+	public int getAge(){
+		return age;
+	}
+	
+	/**
+	 * @return per of this player
+	 */
+	public double getPer(){
+		return per;
 	}
 	
 	/**
@@ -79,7 +107,7 @@ public class BasketballPlayer extends Player{
 		total+=Math.abs((zstats.getRebounds()-otherStats.getRebounds())/zstats.getRebounds());
 		total+=Math.abs((zstats.getAssists()-otherStats.getAssists())/zstats.getAssists());
 		total+=Math.abs((zstats.getSteals()-otherStats.getSteals()/zstats.getSteals()));
-		total+=Math.abs((stats.getBlocks()-otherStats.getBlocks())/zstats.getBlocks());
+		total+=Math.abs((zstats.getBlocks()-otherStats.getBlocks())/zstats.getBlocks());
 		total+=Math.abs((zstats.getTurnovers()-otherStats.getTurnovers())/zstats.getTurnovers());
 		return total;
 	}

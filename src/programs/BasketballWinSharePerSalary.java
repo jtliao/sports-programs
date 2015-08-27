@@ -16,7 +16,7 @@ public class BasketballWinSharePerSalary {
 		String pathName = scan.nextLine();
 		System.out.println("Loading data...");
 		ArrayList<BasketballPlayer> list = new ArrayList<BasketballPlayer>();
-		BasketballImport.importPlayers(pathName, list);
+		BasketballImport.importFullStatPlayers(pathName, list);
 		System.out.println("Player data loaded, enter file path to salary .xls file");
 		pathName = scan.nextLine();
 		BasketballImport.importSalaries(pathName, list);

@@ -23,13 +23,28 @@ public class BasketballImport {
 	 * @param sheetName- the name of the sheet to be imported
 	 * @param list- the list of players to add players to
 	 */
-	public static void importPlayers(String sheetName, ArrayList<BasketballPlayer> list) throws BiffException, IOException{
+	public static void importFullStatPlayers(String sheetName, ArrayList<BasketballPlayer> list) throws BiffException, IOException{
 		Workbook workbook = Workbook.getWorkbook(new File(sheetName));
 		Sheet sheet = workbook.getSheet(0);
 		int counter =0;
 		try{
 			while (sheet.getCell(0, counter)!=null){
-				list.add(importRowToPlayer(counter, sheet));
+				list.add(importFullStatRowToPlayer(counter, sheet));
+				counter++;
+			}
+		}
+		catch (ArrayIndexOutOfBoundsException e){
+			return;
+		}
+	}
+	
+	public static void importPerPlayers(String sheetName, ArrayList<BasketballPlayer> list) throws BiffException, IOException{
+		Workbook workbook = Workbook.getWorkbook(new File(sheetName));
+		Sheet sheet = workbook.getSheet(0);
+		int counter =0;
+		try{
+			while (sheet.getCell(0, counter)!=null){
+				list.add(importPerRowToPlayer(counter, sheet));
 				counter++;
 			}
 		}
@@ -93,12 +108,12 @@ public class BasketballImport {
 	}
 	
 	/**
-	 * Helper method to import a single row into a BasketballPlayer object
+	 * Helper method to import a single row of full player stats into a BasketballPlayer object
 	 * @param row- which row to import
 	 * @param sheet- what sheet to import from
 	 * @return the BasketballPlayer from given row of data
 	 */
-	private static BasketballPlayer importRowToPlayer(int row, Sheet sheet){
+	private static BasketballPlayer importFullStatRowToPlayer(int row, Sheet sheet){
 		String name = sheet.getCell(0, row).getContents();
 		double points = Double.parseDouble(sheet.getCell(1, row).getContents());
 		double  fgp = Double.parseDouble(sheet.getCell(2, row).getContents());
@@ -113,6 +128,19 @@ public class BasketballImport {
 		double to = Double.parseDouble(sheet.getCell(11, row).getContents());
 		mean = calculateMean(sheet);
 		return new BasketballPlayer(name, new BasketballStatline(points, fgp, threes, threepp, ftm, ftp, reb, ast, stl, block, to), mean, calculateStdev(sheet));
+	}
+	
+	/**
+	 * Helper method to import a single row of per stats into a BasketballPlayer object
+	 * @param row- which row to import
+	 * @param sheet- what sheet to import from
+	 * @return the BasketballPlayer from given row of data
+	 */
+	private static BasketballPlayer importPerRowToPlayer(int row, Sheet sheet){
+		String name = sheet.getCell(0, row).getContents();
+		int age = Integer.parseInt(sheet.getCell(1, row).getContents());
+		double per = Double.parseDouble(sheet.getCell(3, row).getContents());
+		return new BasketballPlayer(name, age, per);
 	}
 	
 	/**

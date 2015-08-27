@@ -23,7 +23,7 @@ public class BasketballComparer {
 		String pathName = scan.nextLine();
 		System.out.println("Loading data...");
 		ArrayList<BasketballPlayer> list = new ArrayList<BasketballPlayer>();
-		BasketballImport.importPlayers(pathName, list);
+		BasketballImport.importFullStatPlayers(pathName, list);
 		System.out.println("Enter player to be compared:");
 		String name = scan.nextLine();
 		System.out.println("Searching for player most similar to: "+name);
